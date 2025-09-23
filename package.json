@@ -1,0 +1,20 @@
+{
+  "name": "bookflow",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n backend,frontend -c blue,green \"npm -w @bookflow/backend run dev\" \"npm -w @bookflow/frontend run dev\"",
+    "dev:backend": "npm -w @bookflow/backend run dev",
+    "dev:frontend": "npm -w @bookflow/frontend run dev",
+    "build": "npm -w @bookflow/backend run build && npm -w @bookflow/frontend run build",
+  "postinstall": "npm -w @bookflow/backend run prisma:generate",
+    "prisma:generate": "npm -w @bookflow/backend run prisma:generate",
+    "prisma:migrate": "npm -w @bookflow/backend run prisma:migrate"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}

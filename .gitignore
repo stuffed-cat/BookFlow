@@ -41,6 +41,21 @@ build/Release
 node_modules/
 jspm_packages/
 
+.env.local
+.env.*.local
+*.log
+**/.vite
+**/.turbo
+**/.next
+**/.nuxt
+**/.DS_Store
+apps/**/dist
+apps/**/node_modules
+apps/**/.env
+apps/**/.env.local
+apps/**/coverage
+apps/**/.eslintcache
+
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
