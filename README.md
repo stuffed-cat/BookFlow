@@ -48,7 +48,7 @@
      ┌────────────┴────────────┐
      ▼                         ▼
 +----------+           +---------------------------+
-|  NEW     |           |  LEGACY                   |
+|  NEW     |           |  BookStack (Upstream)     |
 |  TS API  |           |  BookStack (PHP)          |
 +----------+           +---------------------------+
 | • Books  | ◄─Proxy───| • Books (if not migrated) |

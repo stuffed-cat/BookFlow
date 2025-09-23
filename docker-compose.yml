@@ -23,7 +23,7 @@ services:
     environment:
       DATABASE_URL: postgresql://postgres:postgres@db:5432/bookflow?schema=public
       PORT: 3001
-  # LEGACY_BASE_URL should point to external BookStack when used, e.g. http://host.docker.internal:8081
+  # BOOKSTACK_BASE_URL should point to external BookStack when used, e.g. http://host.docker.internal:8081
     ports:
       - '3001:3001'
     depends_on:
