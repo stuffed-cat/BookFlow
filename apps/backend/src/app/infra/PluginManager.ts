@@ -22,6 +22,13 @@ export class PluginManager {
     // reply-from（用于代理下游 BookStack）
     await this.app.register(replyFrom, {});
 
+    // 允许任意 Content-Type 的请求体通过（不解析，直接透传给上游），
+    // 避免出现 415 Unsupported Media Type（例如 form、multipart 等）。
+    // 注意：更具体的解析器（如 application/json）仍会优先生效。
+    this.app.addContentTypeParser('*', (req, payload, done) => {
+      done(null, payload); // 保留为原始流，交由 reply-from/上游处理
+    });
+
     // 强制要求数据库存在且可连接；否则直接崩溃
     if (!this.cfg.databaseUrl) {
       this.app.log.error('DATABASE_URL not set; exit.');
