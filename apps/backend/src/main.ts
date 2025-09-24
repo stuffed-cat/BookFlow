@@ -1,3 +1,4 @@
+#!/usr/bin/env -S node --loader ts-node/esm
 import { loadConfig } from './config.js';
 import { Application } from './app/Application.js';
 

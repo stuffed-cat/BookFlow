@@ -87,6 +87,12 @@
 
 ### 二阶段
     
+> 注意：后端使用 Prisma。首次安装或更新 schema 后，应执行 `prisma generate` 以生成客户端。已在后端包的 prebuild/prestart 中自动执行；也可手动运行：
+
+```bash
+npm -w @bookflow/backend run prisma:generate
+```
+
     - 完成部分API设计并成功对接
     - 实现用户认证
     - 把部分数据从MySQL迁移到PostgreSQL

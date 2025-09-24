@@ -10,7 +10,7 @@
     "dev:backend": "npm -w @bookflow/backend run dev",
     "dev:frontend": "npm -w @bookflow/frontend run dev",
     "build": "npm -w @bookflow/backend run build && npm -w @bookflow/frontend run build",
-  "postinstall": "npm -w @bookflow/backend run prisma:generate",
+    "postinstall": "npm -w @bookflow/backend run prisma:generate",
     "prisma:generate": "npm -w @bookflow/backend run prisma:generate",
     "prisma:migrate": "npm -w @bookflow/backend run prisma:migrate"
   },
