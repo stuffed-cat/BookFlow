@@ -2,8 +2,6 @@ import Fastify, { FastifyInstance } from 'fastify';
 import cors from '@fastify/cors';
 import replyFrom from '@fastify/reply-from';
 import { AppConfig, loadConfig } from './config';
-import configPlugin from './plugins/config';
-import prismaPlugin from './plugins/prisma';
 
 export class BookFlowApp {
     private app: FastifyInstance;
@@ -17,17 +15,17 @@ export class BookFlowApp {
     private async registerPlugins() {
         await this.app.register(cors, { origin: this.cfg.corsOrigin ?? true });
         await this.app.register(replyFrom, {});
-        await this.app.register(configPlugin);
-        await this.app.register(prismaPlugin);
     }
-    
+
     public async init() {
         await this.registerPlugins();
         // 一阶段仅代理：不注册本地 books 路由
 
-        // 最后一条通配符路由：将未被以上路由匹配的请求全部代理到 BookStack
-        this.app.all('/*', async (req, reply) => {
-            return reply.from(`${this.cfg.bookstackBaseUrl}${req.url}`);
+        // 最后一条通配符代理（排除 OPTIONS，交由 @fastify/cors 处理预检以避免重复注册）
+        this.app.route({
+            method: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD'],
+            url: '/*',
+            handler: async (req, reply) => reply.from(`${this.cfg.bookstackBaseUrl}${req.url}`),
         });
     }
 

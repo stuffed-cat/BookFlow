@@ -9,4 +9,4 @@ declare module 'fastify' {
   }
 }
 
-export {};
+export { };
